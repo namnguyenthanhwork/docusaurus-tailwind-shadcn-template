@@ -1,0 +1,19 @@
+hola:
+  label: 'Hola'
+  permalink: '/hola'
+  description: 'Articles on the topic hola'
+
+hello:
+  label: 'Hello'
+  permalink: '/hello'
+  description: 'Articles on the topic hello'
+
+docusaurus:
+  label: 'Docusaurus'
+  permalink: '/docusaurus'
+  description: 'Articles on the topic docusaurus'
+
+facebook:
+  label: 'Facebook'
+  permalink: '/facebook'
+  description: 'Articles on the topic facebook'

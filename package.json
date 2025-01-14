@@ -1,0 +1,65 @@
+{
+  "name": "docusaurus-tailwind-shadcn-template",
+  "description": "Intergrating Tailwind CSS and Shadcn/ui with Docusaurus website template",
+  "author": "Thành Nam Nguyễn",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template/issues"
+  },
+  "homepage": "https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template#readme",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.7.0",
+    "@docusaurus/faster": "^3.7.0",
+    "@docusaurus/plugin-ideal-image": "^3.7.0",
+    "@docusaurus/preset-classic": "3.7.0",
+    "@docusaurus/remark-plugin-npm2yarn": "^3.7.0",
+    "@easyops-cn/docusaurus-search-local": "^0.47.0",
+    "@mdx-js/react": "^3.1.0",
+    "@radix-ui/react-avatar": "^1.1.2",
+    "@radix-ui/react-slot": "^1.1.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.471.1",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.7.0",
+    "@docusaurus/types": "3.7.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.0",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-animate": "^1.0.7",
+    "prettier-plugin-tailwindcss": "^0.6.9"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  }
+}
