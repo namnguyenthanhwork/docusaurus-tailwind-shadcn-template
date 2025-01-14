@@ -21,7 +21,7 @@ This project demonstrates how to integrate TailwindCSS and Shadcn/UI with Docusa
 - **Dark Mode**: Seamless dark mode support with Docusaurus and Shadcn/UI
 - **Performance Optimized**: Built with performance best practices
 
-The website also features a new blog UI was built using Material UI components and provides a modern, clean interface for displaying blog posts. The blog posts are managed by a custom blog plugin, defined in `src/plugins/blog-plugin.js` and homepage config in `components/Homepage/index.js`.
+The website also features a new blog UI was built using TailwindCSS & Shadcn/UI components and provides a modern, clean interface for displaying blog posts. The blog posts are managed by a custom blog plugin, defined in `src/plugins/blog-plugin.js` and homepage config in `components/Homepage/index.js`.
 
 ## Quick Start
 
