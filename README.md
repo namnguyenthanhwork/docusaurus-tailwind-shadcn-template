@@ -129,7 +129,7 @@ themes: [
       indexPages: true,
       docsRouteBasePath: '/docs',
       hashed: true,
-      language: ['vi'],
+      language: ['en'],
       highlightSearchTermsOnTargetPage: false,
       searchResultContextMaxLength: 50,
       searchResultLimits: 8,
