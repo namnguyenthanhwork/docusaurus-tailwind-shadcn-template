@@ -6,6 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 import BlogPostItem from '@theme/BlogPostItem'
 import TagsListInline from '@theme/TagsListInline'
 
+import TimeStamp from '../../components/TimeStamp'
 import { Avatar } from '../../components/ui/avatar'
 import { Card, CardContent, CardFooter } from '../../components/ui/card'
 
@@ -17,10 +18,10 @@ export default function BlogPostItems({ items, component: BlogPostItemComponent 
           <Card className='flex w-full flex-col border-0 bg-transparent shadow-none'>
             <Link
               to={blog.content.metadata.permalink}
-              className='overflow-hidden rounded-lg transition-opacity hover:opacity-90'
+              className='overflow-hidden transition-opacity hover:opacity-90'
             >
               <Image
-                className='h-auto w-full object-cover'
+                className='block h-auto w-full rounded-lg object-cover'
                 img={useBaseUrl(blog.content.metadata.frontMatter.image)}
                 alt={blog.content.metadata.title}
                 loading='lazy'
@@ -29,13 +30,13 @@ export default function BlogPostItems({ items, component: BlogPostItemComponent 
 
             <CardContent className='mt-2 p-4'>
               <Link to={blog.content.metadata.permalink} className='mt-4'>
-                <p className='p-0 text-xl font-semibold'>{blog.content.metadata.title}</p>
+                <p className='mb-1 p-0 text-xl font-semibold'>{blog.content.metadata.title}</p>
               </Link>
 
               <p className='mb-4 mt-2 line-clamp-2 dark:text-gray-400'>
                 {blog.content.metadata.description}
               </p>
-              <div className='my-2 flex items-center gap-2'>
+              <div className='my-2 flex flex-wrap items-center gap-2'>
                 {blog.content.metadata.authors.map((author, index) => (
                   <Link
                     href={author.page.permalink}
@@ -54,7 +55,9 @@ export default function BlogPostItems({ items, component: BlogPostItemComponent 
                 ))}
 
                 <div className='text-sm dark:text-gray-400'>
-                  <span>{new Date(blog.content.metadata.date).toLocaleDateString()}</span>
+                  <span>
+                    <TimeStamp timestamp={blog.content.metadata.date} />
+                  </span>
                   <span className='mx-2'>•</span>
                   <span>{Math.ceil(blog.content.metadata.readingTime)} min read</span>
                 </div>

@@ -1,6 +1,3 @@
-import clsx from 'clsx'
-import Heading from '@theme/Heading'
-
 const FeatureList = [
   {
     title: 'Easy to Use',
@@ -36,14 +33,12 @@ const FeatureList = [
 
 function Feature({ Svg, title, description }) {
   return (
-    <div className={clsx('col col--4')}>
+    <div>
       <div className='text--center'>
         <Svg className='mx-auto h-52 w-52' role='img' />
       </div>
       <div className='text--center padding-horiz--md'>
-        <Heading as='h3' className='mb-2 text-xl font-bold'>
-          {title}
-        </Heading>
+        <p className='mb-2 text-xl font-bold'>{title}</p>
         <p className='mx-auto max-w-sm'>{description}</p>
       </div>
     </div>
@@ -53,8 +48,8 @@ function Feature({ Svg, title, description }) {
 export default function HomepageFeatures() {
   return (
     <section className='py-10'>
-      <div className='container max-w-7xl'>
-        <div className='row'>
+      <div className='mx-auto max-w-7xl'>
+        <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3'>
           {FeatureList.map((props, idx) => (
             <Feature key={idx} {...props} />
           ))}

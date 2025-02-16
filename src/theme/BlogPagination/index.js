@@ -74,7 +74,7 @@ export const BlogPagination = ({ metadata }) => {
         <PaginationItem>
           <PaginationPrevious
             onClick={() => page > 1 && handlePageChange(page - 1)}
-            className={page <= 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+            className={page <= 1 ? 'hidden' : 'cursor-pointer'}
           />
         </PaginationItem>
 
@@ -86,7 +86,7 @@ export const BlogPagination = ({ metadata }) => {
               <PaginationLink
                 onClick={() => handlePageChange(pageNum)}
                 isActive={page === pageNum}
-                className='cursor-pointer'
+                className='cursor-pointer shadow-sm'
               >
                 {pageNum}
               </PaginationLink>
@@ -97,9 +97,7 @@ export const BlogPagination = ({ metadata }) => {
         <PaginationItem>
           <PaginationNext
             onClick={() => page < metadata.totalPages && handlePageChange(page + 1)}
-            className={
-              page >= metadata.totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'
-            }
+            className={page >= metadata.totalPages ? 'hidden' : 'cursor-pointer'}
           />
         </PaginationItem>
       </PaginationContent>
