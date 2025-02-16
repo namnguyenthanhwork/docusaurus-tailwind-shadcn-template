@@ -36,7 +36,9 @@ function HomepageHeader() {
         </p>
 
         <Button asChild>
-          <Link to='/docs/intro'>Docusaurus Tutorial - 5min ⏱️</Link>
+          <Link to='/docs/intro' className='hover:text-primary-foreground'>
+            Docusaurus Tutorial - 5min ⏱️
+          </Link>
         </Button>
       </div>
     </header>

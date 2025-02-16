@@ -5,6 +5,9 @@ module.exports = {
     './docs/**/*.{js,jsx,ts,tsx}',
     './blog/**/*.{js,jsx,ts,tsx}'
   ],
+  corePlugins: {
+    preflight: false
+  },
   darkMode: ['class', '[data-theme="dark"]'], // Support Docusaurus dark mode
   theme: {
     extend: {
