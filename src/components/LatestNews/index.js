@@ -7,6 +7,7 @@ import TagsListInline from '@theme/TagsListInline'
 import { Avatar } from '../../components/ui/avatar'
 import { Card, CardContent, CardFooter } from '../../components/ui/card'
 import { Button } from '../../components/ui/button'
+import TimeStamp from '../TimeStamp'
 
 function RecentBlogPostCard({ recentPost }) {
   const { blogData } = recentPost
@@ -15,10 +16,10 @@ function RecentBlogPostCard({ recentPost }) {
     <Card className='flex w-full flex-col border-0 bg-transparent shadow-none'>
       <Link
         to={blogData.metadata.permalink}
-        className='overflow-hidden rounded-lg transition-opacity hover:opacity-90'
+        className='overflow-hidden transition-opacity hover:opacity-90'
       >
         <Image
-          className='h-auto w-full object-cover'
+          className='block h-auto w-full rounded-lg object-cover'
           img={useBaseUrl(blogData.metadata.frontMatter.image)}
           alt={blogData.metadata.title}
           loading='lazy'
@@ -27,11 +28,11 @@ function RecentBlogPostCard({ recentPost }) {
 
       <CardContent className='mt-2 p-4'>
         <Link to={blogData.metadata.permalink} className='mt-4'>
-          <p className='p-0 text-xl font-semibold'>{blogData.metadata.title}</p>
+          <p className='mb-1 p-0 text-xl font-semibold'>{blogData.metadata.title}</p>
         </Link>
 
         <p className='mb-4 mt-2 line-clamp-2 dark:text-gray-400'>{blogData.metadata.description}</p>
-        <div className='my-2 flex items-center gap-2'>
+        <div className='my-2 flex flex-wrap items-center gap-2'>
           {blogData.metadata.authors.map((author, index) => (
             <Link
               href={author.page.permalink}
@@ -50,7 +51,9 @@ function RecentBlogPostCard({ recentPost }) {
           ))}
 
           <div className='text-sm dark:text-gray-400'>
-            <span>{new Date(blogData.metadata.date).toLocaleDateString()}</span>
+            <span>
+              <TimeStamp timestamp={blogData.metadata.date} />
+            </span>
             <span className='mx-2'>•</span>
             <span>{Math.ceil(blogData.metadata.readingTime)} min read</span>
           </div>
@@ -85,9 +88,11 @@ export default function LatestNews({ homePageBlogMetadata, recentPosts }) {
       </div>
 
       <div className='mt-8 text-center'>
-        <Link to={homePageBlogMetadata.path}>
-          <Button>See all</Button>
-        </Link>
+        <Button asChild>
+          <Link to={homePageBlogMetadata.path} className='hover:text-primary-foreground'>
+            See all
+          </Link>
+        </Button>
       </div>
     </div>
   )
