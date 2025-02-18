@@ -86,7 +86,7 @@ export const BlogPagination = ({ metadata }) => {
               <PaginationLink
                 onClick={() => handlePageChange(pageNum)}
                 isActive={page === pageNum}
-                className='cursor-pointer shadow-sm'
+                className='cursor-pointer shadow-xs'
               >
                 {pageNum}
               </PaginationLink>

@@ -1,7 +1,67 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme) important;
+@import 'tailwindcss/utilities.css' layer(utilities) important;
+
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is([data-theme="dark"] *));
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
 @layer base {
+  /*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+    border-color: hsl(var(--border));
+  }
+
   :root {
     /* Shadcn Style new-york - slate */
     --background: 0 0% 100%;
@@ -29,28 +89,6 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-
-    /* Docusaurus color */
-    --prism-background-color: #edefff;
-    --ifm-footer-background-color: #fff;
-    --ifm-footer-link-color: #333;
-    --ifm-code-font-size: 95%;
-    --ifm-h1-font-size: 2.5rem;
-    --docusaurus-highlighted-code-line-bg: #0000001a;
-    --ifm-global-shadow-tl: 2px 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    --ifm-font-family-base: Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, system-ui,
-      -apple-system, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
-      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-    --menu-link-active: rgba(0, 0, 0, 0.1);
-    --ifm-menu-link-padding-vertical: 0.5rem;
-    --docs-fg-base: #030712;
-    --ifm-menu-color-active: var(--docs-fg-base);
-
-    /* Docsearch color */
-    --docsearch-key-gradient: linear-gradient(-225deg, #d5dbe4, #f8f8f8);
-    --docsearch-key-shadow: inset 0 -2px 0 0 #cdcde6, inset 0 0 1px 1px #fff,
-      0 1px 2px 1px #1e235a66;
-    --docsearch-muted-color: #969faf;
   }
 
   html[data-theme='dark'] {
@@ -79,56 +117,68 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-
-    /* Docusaurus color */
-    --prism-background-color: #1d2144;
-    --ifm-background-color: #14102c;
-    --ifm-background-surface-color: #14102c;
-    --ifm-footer-link-color: #dadde1;
-    --ifm-color-primary: #16ad8d;
-    --ifm-menu-color-background-active: #ffffff1a;
-    --menu-link-active: rgba(255, 255, 255, 0.1);
-    --ifm-menu-color-active: var(--ifm-color-primary);
-
-    /* Docsearch color */
-    --table-of-contents-color: #e8e8e8;
-    --docusaurus-highlighted-code-line-bg: #0000004d;
-    --docsearch-muted-color: #7f8497;
-    --docsearch-key-gradient: linear-gradient(-26.5deg, #565872, #31355b);
-    --docsearch-key-shadow: inset 0 -2px 0 0 #282d55, inset 0 0 1px 1px #51577d,
-      0 2px 2px 0 #0304094d;
-  }
-
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--border)) transparent;
-    border-color: hsl(var(--border));
-  }
-
-  *,
-  :before,
-  :after {
-    box-sizing: border-box;
-    border: 0 solid hsl(var(--border));
   }
 
   html {
     font: var(--ifm-font-size-base) / var(--ifm-line-height-base) var(--ifm-font-family-base);
   }
+}
 
-  a {
-    @apply hover:no-underline;
+:root {
+  /* Docusaurus vars */
+  --prism-background-color: #edefff;
+  --ifm-footer-background-color: #fff;
+  --ifm-footer-link-color: #333;
+  --ifm-code-font-size: 95%;
+  --ifm-color-primary: #044cc1;
+  --ifm-h1-font-size: 2.5rem;
+  --docusaurus-highlighted-code-line-bg: #0000001a;
+  --ifm-global-shadow-tl: 2px 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  --ifm-font-family-base: Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, system-ui, -apple-system,
+    sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+  --menu-link-active: rgba(0, 0, 0, 0.1);
+  --ifm-menu-link-padding-vertical: 0.5rem;
+  --docs-fg-base: #030712;
+  --ifm-menu-color-active: var(--docs-fg-base);
+
+  /* Docsearch color */
+  --docsearch-key-gradient: linear-gradient(-225deg, #d5dbe4, #f8f8f8);
+  --docsearch-key-shadow: inset 0 -2px 0 0 #cdcde6, inset 0 0 1px 1px #fff, 0 1px 2px 1px #1e235a66;
+  --docsearch-muted-color: #969faf;
+}
+
+html[data-theme='dark'] {
+  /* Docusaurus color */
+  --prism-background-color: #1d2144;
+  --ifm-background-color: #14102c;
+  --ifm-background-surface-color: #14102c;
+  --ifm-footer-link-color: #dadde1;
+  --ifm-color-primary: #16ad8d;
+  --ifm-menu-color-background-active: #ffffff1a;
+  --menu-link-active: rgba(255, 255, 255, 0.1);
+  --ifm-menu-color-active: var(--ifm-color-primary);
+
+  /* Docsearch color */
+  --table-of-contents-color: #e8e8e8;
+  --docusaurus-highlighted-code-line-bg: #0000004d;
+  --docsearch-muted-color: #7f8497;
+  --docsearch-key-gradient: linear-gradient(-26.5deg, #565872, #31355b);
+  --docsearch-key-shadow: inset 0 -2px 0 0 #282d55, inset 0 0 1px 1px #51577d, 0 2px 2px 0 #0304094d;
+}
+
+@utility blog-tags {
+  & b {
+    @apply hidden;
   }
 }
 
-@layer utilities {
-  .markdown h1:first-child {
-    --ifm-h1-font-size: 2rem;
-  }
+.markdown h1:first-child {
+  --ifm-h1-font-size: 2rem;
+}
 
-  .blog-tags b {
-    @apply hidden;
-  }
+a {
+  @apply hover:no-underline;
 }
 
 a[class^='footerLogoLink_'] {
