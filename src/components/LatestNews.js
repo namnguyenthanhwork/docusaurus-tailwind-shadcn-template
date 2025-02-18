@@ -4,10 +4,10 @@ import Image from '@theme/IdealImage'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import TagsListInline from '@theme/TagsListInline'
 
-import { Avatar } from '../../components/ui/avatar'
-import { Card, CardContent, CardFooter } from '../../components/ui/card'
-import { Button } from '../../components/ui/button'
-import TimeStamp from '../TimeStamp'
+import TimeStamp from './TimeStamp'
+import { Avatar } from '../components/ui/avatar'
+import { Button } from '../components/ui/button'
+import { Card, CardContent, CardFooter } from '../components/ui/card'
 
 function RecentBlogPostCard({ recentPost }) {
   const { blogData } = recentPost
@@ -31,7 +31,7 @@ function RecentBlogPostCard({ recentPost }) {
           <p className='mb-1 p-0 text-xl font-semibold'>{blogData.metadata.title}</p>
         </Link>
 
-        <p className='mb-4 mt-2 line-clamp-2 dark:text-gray-400'>{blogData.metadata.description}</p>
+        <p className='mt-2 mb-4 line-clamp-2 dark:text-gray-400'>{blogData.metadata.description}</p>
         <div className='my-2 flex flex-wrap items-center gap-2'>
           {blogData.metadata.authors.map((author, index) => (
             <Link
@@ -73,7 +73,7 @@ function RecentBlogPostCard({ recentPost }) {
 
 export default function LatestNews({ homePageBlogMetadata, recentPosts }) {
   return (
-    <div className='container my-16 max-w-7xl'>
+    <div className='mx-auto my-16 max-w-7xl px-4'>
       <div className='mb-16 text-center'>
         <h2 className='mb-4 text-3xl font-bold'>{homePageBlogMetadata.blogTitle}</h2>
         <p>{homePageBlogMetadata.blogDescription}</p>
