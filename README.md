@@ -7,7 +7,7 @@ This project demonstrates how to integrate TailwindCSS and Shadcn/UI with Docusa
 ## Technology Stack
 
 - ⚡️ Docusaurus V3
-- 🎨 TailwindCSS for styling
+- 🎨 TailwindCSS for styling (Support v3 and v4)
 - 🧩 Shadcn/UI components
 - 🔍 `@easyops-cn/docusaurus-search-local` for search functionality
 - 📱 Fully responsive design
@@ -25,16 +25,16 @@ The website also features a new blog UI was built using TailwindCSS & Shadcn/UI 
 
 ## Quick Start
 
-If you want to use this template with tailwind v3, switch to the `feature/docusaurus-tailwind-v3` branch.
+If you want to use this template with Tailwind v3, switch to the `feature/docusaurus-tailwind-v3` branch.
 
 ```bash
-git clone -b feature/docusaurus-tailwind-v3
+git clone -b feature/docusaurus-tailwind-v3 https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template.git
 ```
 
-If you want to use this template with tailwind v4, use branch `main` or switch to the `feature/docusaurus-tailwind-v4` branch.
+If you want to use this template with Tailwind v4, use `main` branch or switch to the `feature/docusaurus-tailwind-v4` branch.
 
 ```bash
-git clone -b feature/docusaurus-tailwind-v4
+git clone -b feature/docusaurus-tailwind-v4 https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template.git
 ```
 
 ### Option 1: Deploy to Vercel
@@ -82,12 +82,14 @@ docusaurus-tailwind-shadcn-template/
 │   ├── components/
 │   │   └── ui/           # Shadcn/UI components
 │   ├── css/
-│   │   └── custom.css    # TailwindCSS and custom styles
+│   │   └── custom.css    # TailwindCSS config and custom styles
 │   ├── lib/
 │   │   └── utils.ts      # Utility functions
-│   └── pages/            # React pages
-├── static/
-├── tailwind.config.js    # TailwindCSS configuration
+│   ├── pages/            # React pages
+│   ├── plugins/          # Docusaurus plugins
+│   └── theme/            # Docusaurus theme customization
+├── static/               # Static assets
+├── tailwind.config.js    # TailwindCSS configuration (if using v3, removed in v4)
 ├── postcss.config.js     # PostCSS configuration
 └── docusaurus.config.js  # Docusaurus configuration
 ```
@@ -98,9 +100,14 @@ docusaurus-tailwind-shadcn-template/
 
 The project includes a custom TailwindCSS configuration optimized for Docusaurus:
 
+In v3, you can customize the TailwindCSS configuration in `tailwind.config.js`.
+
 ```javascript
 // tailwind.config.js
 module.exports = {
+  corePlugins: {
+    preflight: false,
+  },
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
     "./docs/**/*.{js,jsx,ts,tsx}",
@@ -110,6 +117,10 @@ module.exports = {
   // ... rest of the configuration
 }
 ```
+
+In v4, you can customize the TailwindCSS configuration in `custom.css`. The `tailwind.config.js` file is removed in v4.
+
+Read more about [TailwindCSS v4](https://tailwindcss.com/blog/tailwindcss-v4).
 
 ### Shadcn/UI Components
 
@@ -127,7 +138,7 @@ function MyComponent() {
 }
 ```
 
-**Note:** You can't install Shadcn/UI via CLI, so you need to copy the components (manual) and change the import path.
+**Note:** Because Docusaurus doesn't support CLI installation for Shadcn/UI, you'll need to manually copy the components and adjust the import paths.
 
 ### Search Configuration
 
@@ -156,7 +167,7 @@ themes: [
 
 ### Theming
 
-1. Modify colors in `tailwind.config.js`
+1. Modify colors in `tailwind.config.js` (v3) or `src/css/custom.css` (v4)
 2. Update CSS variables in `src/css/custom.css`
 3. Customize Shadcn/UI components in `src/components/ui/`
 
@@ -200,9 +211,13 @@ We welcome contributions! Please follow these steps:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
-
 Built with ♥ by [namnguyenthanhwork]
+
+## Buy me a coffee
+
+If you find this project helpful, you can buy me a coffee:
+
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-Donate-FF813F.svg)](https://buymeacoffee.com/thanhnamnguyen)
 
 ## Template similar
 
