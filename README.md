@@ -25,11 +25,23 @@ The website also features a new blog UI was built using TailwindCSS & Shadcn/UI 
 
 ## Quick Start
 
+If you want to use this template with tailwind v3, switch to the `feature/docusaurus-tailwind-v3` branch.
+
+```bash
+git clone -b feature/docusaurus-tailwind-v3
+```
+
+If you want to use this template with tailwind v4, use branch `main` or switch to the `feature/docusaurus-tailwind-v4` branch.
+
+```bash
+git clone -b feature/docusaurus-tailwind-v4
+```
+
 ### Option 1: Deploy to Vercel
 
 You can get started by creating your own Docusaurus website and deploy to Vercel by clicking the link:
 
-[![](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fnamnguyenthanhwork%2Fdocusaurus-tailwind-shadcn-template&showOptionalTeamCreation=false)
+[![clone](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fnamnguyenthanhwork%2Fdocusaurus-tailwind-shadcn-template&showOptionalTeamCreation=false)
 
 Vercel will copy the [Docusaurus TailwindCSS Shadcn/ui](https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template) and deploy the website for you. Once completed, every commit in the repo will be deployed automatically.
 
@@ -62,7 +74,7 @@ npm run build
 
 ## Project Structure
 
-```
+```bash
 docusaurus-tailwind-shadcn-template/
 ├── blog/
 ├── docs/
