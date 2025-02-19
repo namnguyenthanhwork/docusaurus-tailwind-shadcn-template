@@ -1,0 +1,63 @@
+---
+id: get-inventory
+title: "Returns pet inventories by status"
+description: "Returns a map of status codes to quantities"
+sidebar_label: "Returns pet inventories by status"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: docs/petstore_versioned/1.0.0/swagger-petstore-yaml
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Returns pet inventories by status"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/store/inventory"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns a map of status codes to quantities
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"object","additionalProperties":{"type":"integer","format":"int32"}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
