@@ -38,9 +38,10 @@
     --ifm-h1-font-size: 2.5rem;
     --docusaurus-highlighted-code-line-bg: #0000001a;
     --ifm-global-shadow-tl: 2px 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    --ifm-font-family-base: Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, system-ui,
-      -apple-system, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
-      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    --ifm-font-family-base:
+      Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, system-ui, -apple-system, sans-serif,
+      BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+      'Segoe UI Emoji', 'Segoe UI Symbol';
     --menu-link-active: rgba(0, 0, 0, 0.1);
     --ifm-menu-link-padding-vertical: 0.5rem;
     --docs-fg-base: #030712;
@@ -48,8 +49,8 @@
 
     /* Docsearch color */
     --docsearch-key-gradient: linear-gradient(-225deg, #d5dbe4, #f8f8f8);
-    --docsearch-key-shadow: inset 0 -2px 0 0 #cdcde6, inset 0 0 1px 1px #fff,
-      0 1px 2px 1px #1e235a66;
+    --docsearch-key-shadow:
+      inset 0 -2px 0 0 #cdcde6, inset 0 0 1px 1px #fff, 0 1px 2px 1px #1e235a66;
     --docsearch-muted-color: #969faf;
   }
 
@@ -95,8 +96,8 @@
     --docusaurus-highlighted-code-line-bg: #0000004d;
     --docsearch-muted-color: #7f8497;
     --docsearch-key-gradient: linear-gradient(-26.5deg, #565872, #31355b);
-    --docsearch-key-shadow: inset 0 -2px 0 0 #282d55, inset 0 0 1px 1px #51577d,
-      0 2px 2px 0 #0304094d;
+    --docsearch-key-shadow:
+      inset 0 -2px 0 0 #282d55, inset 0 0 1px 1px #51577d, 0 2px 2px 0 #0304094d;
   }
 
   * {
@@ -213,6 +214,53 @@ div[class^='docItemContainer_'] article img {
   -moz-border-radius: 7px;
   -ms-border-radius: 7px;
   -o-border-radius: 7px;
+}
+
+/* Sidebar Method labels */
+.api-method > .menu__link {
+  align-items: center;
+  justify-content: start;
+}
+
+.api-method > .menu__link::before {
+  width: 50px;
+  height: 20px;
+  font-size: 12px;
+  line-height: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  border: 1px solid;
+  margin-right: var(--ifm-spacing-horizontal);
+  text-align: center;
+  flex-shrink: 0;
+  border-color: transparent;
+  color: white;
+}
+
+.get > .menu__link::before {
+  content: 'get';
+  background-color: var(--ifm-color-primary);
+}
+
+.put > .menu__link::before {
+  content: 'put';
+  background-color: var(--openapi-code-blue);
+}
+
+.post > .menu__link::before {
+  content: 'post';
+  background-color: var(--openapi-code-green);
+}
+
+.delete > .menu__link::before {
+  content: 'del';
+  background-color: var(--openapi-code-red);
+}
+
+.patch > .menu__link::before {
+  content: 'patch';
+  background-color: var(--openapi-code-orange);
 }
 
 /* Tablet */
