@@ -52,7 +52,7 @@ git clone -b feature/docusaurus-tailwind-v4 https://github.com/namnguyenthanhwor
 git clone -b feature/docusaurus-tailwind-v4-openapi-docs https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template.git
 ```
 
-### Deployments
+## Deployments
 
 ### Vercel
 
@@ -62,7 +62,13 @@ You can get started by creating your own Docusaurus website and deploy to Vercel
 
 Vercel will copy the [Docusaurus TailwindCSS Shadcn/ui](https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template) and deploy the website for you. Once completed, every commit in the repo will be deployed automatically.
 
-### Netlify, Cloudflare Pages, and Others
+## Cloudflare Pages
+
+Go to the platform of your choice and follow the instructions to deploy a new site from a Git repository.
+
+Notice: Use yarn instead of npm for Cloudflare Pages.
+
+### Netlify and Others
 
 Go to the platform of your choice and follow the instructions to deploy a new site from a Git repository.
 
@@ -91,6 +97,12 @@ npm start
 
 ```bash
 npm run build
+```
+
+5. Serve the production build:
+
+```bash
+npm run serve
 ```
 
 ## Project Structure
@@ -285,19 +297,19 @@ Add scripts to `package.json` if not exist:
 Generating versioned API docs example (current version):
 
 ```bash
-npx run gen-api-docs <id config>
+npm run gen-api-docs <id config>
 ```
 
 Generating all Petstore versioned API docs (exclude current version):
 
 ```bash
-npx run gen-api-docs:version petstore:all
+npm run gen-api-docs:version petstore:all
 ```
 
 Cleaning versioned API docs example:
 
 ```bash
-npx run clean-api-docs <id config>
+npm run clean-api-docs <id config>
 ```
 
 or delete the `docs/<id>` directory manually.
