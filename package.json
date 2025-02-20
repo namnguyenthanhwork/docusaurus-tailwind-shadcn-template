@@ -67,5 +67,9 @@
       "last 3 firefox version",
       "last 5 safari version"
     ]
-  }
+  },
+  "optionalDependencies": {
+    "postman-code-generators": "^1.14.1"
+  },
+  "packageManager": "yarn@3.6.3"
 }
