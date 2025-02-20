@@ -52,7 +52,7 @@ git clone -b feature/docusaurus-tailwind-v4 https://github.com/namnguyenthanhwor
 git clone -b feature/docusaurus-tailwind-v4-openapi-docs https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template.git
 ```
 
-### Deployments
+## Deployments
 
 ### Vercel
 
@@ -66,13 +66,13 @@ Vercel will copy the [Docusaurus TailwindCSS Shadcn/ui](https://github.com/namng
 
 Go to the platform of your choice and follow the instructions to deploy a new site from a Git repository.
 
-Note: Use yarn instead of yarn for Cloudflare Pages.
+Notice: Use yarn instead of npm for Cloudflare Pages.
 
 ### Netlify and Others
 
 Go to the platform of your choice and follow the instructions to deploy a new site from a Git repository.
 
-### Option 2: Local Development
+## Local Development
 
 1. Clone the repository:
 
