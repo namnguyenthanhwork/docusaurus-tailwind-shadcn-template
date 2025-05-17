@@ -1,0 +1,10 @@
+{
+  "label": "FAQ",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "title": "Frequently Asked Questions",
+    "description": "Find answers to common questions about KreatorFlow.AI, from account setup to advanced generation techniques.",
+    "keywords": ["faq", "kreatorflow", "help", "support", "questions"]
+  }
+} 

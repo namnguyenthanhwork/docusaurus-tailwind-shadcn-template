@@ -1,225 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer base {
-  :root {
-    /* Shadcn Style new-york - slate */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
 
-    /* Docusaurus color */
-    --prism-background-color: #edefff;
-    --ifm-footer-background-color: #fff;
-    --ifm-footer-link-color: #333;
-    --ifm-code-font-size: 95%;
-    --ifm-h1-font-size: 2.5rem;
-    --docusaurus-highlighted-code-line-bg: #0000001a;
-    --ifm-global-shadow-tl: 2px 3px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    --ifm-font-family-base: Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, system-ui,
-      -apple-system, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
-      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-    --menu-link-active: rgba(0, 0, 0, 0.1);
-    --ifm-menu-link-padding-vertical: 0.5rem;
-    --docs-fg-base: #030712;
-    --ifm-menu-color-active: var(--docs-fg-base);
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
 
-    /* Docsearch color */
-    --docsearch-key-gradient: linear-gradient(-225deg, #d5dbe4, #f8f8f8);
-    --docsearch-key-shadow: inset 0 -2px 0 0 #cdcde6, inset 0 0 1px 1px #fff,
-      0 1px 2px 1px #1e235a66;
-    --docsearch-muted-color: #969faf;
-  }
+/* Root variables for Light Mode (though dark mode is primary) */
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
 
-  html[data-theme='dark'] {
-    /* Shadcn Style new-york - slate */
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+  --ifm-font-family-base: var(--font-inter);
+  --ifm-font-family-heading: var(--font-space-grotesk); /* Docusaurus uses this for headings */
 
-    /* Docusaurus color */
-    --prism-background-color: #1d2144;
-    --ifm-background-color: #14102c;
-    --ifm-background-surface-color: #14102c;
-    --ifm-footer-link-color: #dadde1;
-    --ifm-color-primary: #16ad8d;
-    --ifm-menu-color-background-active: #ffffff1a;
-    --menu-link-active: rgba(255, 255, 255, 0.1);
-    --ifm-menu-color-active: var(--ifm-color-primary);
+  --ifm-color-primary: #8B5CF6; /* KreatorFlow Purple 500 */
+  --ifm-color-primary-dark: #7C3AED; /* Purple 600 */
+  --ifm-color-primary-darker: #6D28D9; /* Purple 700 */
+  --ifm-color-primary-darkest: #5B21B6; /* Purple 800 */
+  --ifm-color-primary-light: #A78BFA; /* Purple 400 */
+  --ifm-color-primary-lighter: #C4B5FD; /* Purple 300 */
+  --ifm-color-primary-lightest: #DDD6FE; /* Purple 200 */
+  
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
-    /* Docsearch color */
-    --table-of-contents-color: #e8e8e8;
-    --docusaurus-highlighted-code-line-bg: #0000004d;
-    --docsearch-muted-color: #7f8497;
-    --docsearch-key-gradient: linear-gradient(-26.5deg, #565872, #31355b);
-    --docsearch-key-shadow: inset 0 -2px 0 0 #282d55, inset 0 0 1px 1px #51577d,
-      0 2px 2px 0 #0304094d;
-  }
-
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--border)) transparent;
-    border-color: hsl(var(--border));
-  }
-
-  *,
-  :before,
-  :after {
-    box-sizing: border-box;
-    border: 0 solid hsl(var(--border));
-  }
-
-  html {
-    font: var(--ifm-font-size-base) / var(--ifm-line-height-base) var(--ifm-font-family-base);
-  }
-
-  a {
-    @apply hover:no-underline;
-  }
+  /* Custom KreatorFlow Variables (can be used in overrides) */
+  --kf-background-dark: #0d0c14; /* Very dark purple/black */
+  /* Updated card background to reflect SaaS app */
+  --kf-card-background: linear-gradient(to bottom right, rgba(13, 12, 20, 0.5), rgba(0,0,0,0.7)); /* from-purple-950/50 via-black to-black/70 approximation */
+  --kf-border-color: rgba(139, 92, 246, 0.4); /* Maintained KreatorFlow Purple 700/40 from SaaS */
+  --kf-text-primary: #E0E0E0; /* Light gray for text */
+  --kf-text-secondary: #A0A0A0; /* Medium gray for secondary text */
+  --kf-purple-accent: #8B5CF6; /* Purple 500 */
+  --kf-sky-blue-accent: #38BDF8; /* sky-400 / sky-500 from SaaS buttons */
 }
 
-@layer utilities {
-  .markdown h1:first-child {
-    --ifm-h1-font-size: 2rem;
-  }
+/* Dark Mode Overrides */
+[data-theme='dark'] {
+  --ifm-color-primary: #8B5CF6;         /* KreatorFlow Purple 500 */
+  --ifm-color-primary-dark: #7C3AED;    /* Purple 600 */
+  --ifm-color-primary-darker: #6D28D9;  /* Purple 700 */
+  --ifm-color-primary-darkest: #5B21B6; /* Purple 800 */
+  --ifm-color-primary-light: #A78BFA;   /* Purple 400 */
+  --ifm-color-primary-lighter: #C4B5FD; /* Purple 300 */
+  --ifm-color-primary-lightest: #DDD6FE;/* Purple 200 */
 
-  .blog-tags b {
-    @apply hidden;
-  }
+  --ifm-background-color: var(--kf-background-dark); /* KreatorFlow very dark background */
+  --ifm-font-color-base: var(--kf-text-primary); /* Light gray text */
+  --ifm-link-color: #A78BFA; /* Lighter purple for links */
+  --ifm-link-hover-decoration: underline;
+  
+  --ifm-navbar-background-color: rgba(13, 12, 20, 0.7); /* Darker, semi-transparent like main app */
+  --ifm-navbar-link-color: var(--kf-text-primary);
+  --ifm-navbar-link-hover-color: var(--ifm-color-primary-light);
+
+  --ifm-footer-background-color: #08070c; /* Even darker for footer */
+  --ifm-footer-link-color: var(--kf-text-secondary);
+  --ifm-footer-link-hover-color: var(--ifm-color-primary-light);
+  --ifm-footer-title-color: var(--kf-text-primary);
+
+  --ifm-card-background-color: var(--kf-card-background);
+  --ifm-card-border-color: var(--kf-border-color); /* Added border color for cards */
+  --ifm-card-border-radius: 1rem; /* 16px, closer to SaaS rounded-2xl */
+  --ifm-global-shadow-lw: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  /* Updated shadows to reflect SaaS app more closely - more purple based */
+  --ifm-global-shadow-md: 0 10px 15px -3px rgba(139, 92, 246, 0.2), 0 4px 6px -4px rgba(139, 92, 246, 0.2); /* shadow-xl shadow-purple-900/30 or 700/40 approximation */
+  --ifm-global-shadow-tl: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
+
+
+  --ifm-toc-border-color: var(--kf-border-color);
+  --ifm-tabs-color-active: var(--ifm-color-primary);
+  --ifm-tabs-color-active-border: var(--ifm-color-primary);
+
+  --docusaurus-highlighted-code-line-bg: rgba(139, 92, 246, 0.15); /* Purple-tinted highlight */
 }
 
-a[class^='footerLogoLink_'] {
-  opacity: 1;
+/* Global styles to attempt backdrop-blur if possible, might need JS for some components */
+/* Docusaurus v3 uses .navbar class for the navbar */
+.navbar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-/* Custom CSS that should always be included */
-.navbar__item svg,
-.menu__link svg,
-.footer__link-item svg {
-  display: none;
+/* Custom button styling to match KreatorFlow (example) */
+.button--primary {
+  /* Updated gradient to match SaaS app: from-purple-600 via-purple-500 to-sky-500 */
+  background-image: linear-gradient(to right, var(--ifm-color-primary-darker), var(--ifm-color-primary), var(--kf-sky-blue-accent));
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 9999px; /* rounded-full */
+  font-weight: 600; /* font-semibold */
+  /* Approximating shadow-lg shadow-purple-700/30 */
+  box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.2), 0 4px 6px -2px rgba(139, 92, 246, 0.15);
+}
+.button--primary:hover {
+  /* Updated hover gradient: hover:from-purple-500 hover:via-purple-400 hover:to-sky-400 */
+  background-image: linear-gradient(to right, var(--ifm-color-primary-dark), var(--ifm-color-primary-light), #38BDF8cc); /* sky-400 with opacity */
+  /* Approximating hover:shadow-xl hover:shadow-purple-500/40 */
+  box-shadow: 0 20px 25px -5px rgba(167, 139, 250, 0.25), 0 10px 10px -5px rgba(167, 139, 250, 0.2);
+  transform: scale(1.05);
 }
 
-.header-github-link::before {
-  content: '';
-  width: 24px;
-  height: 24px;
+.hero--primary {
+  background-color: #000000 !important; /* Black base for hero to match SaaS app */
+  /* Updated to match SaaS app hero: bg-gradient-radial from-purple-900/40 via-black/0 to-black/0 */
+  background-image: radial-gradient(ellipse at center, rgba(88, 28, 135, 0.4) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%); /* purple-900 is approx #581c87 */
+  color: var(--kf-text-primary); /* Ensure text is light on dark hero */
+}
+
+/* Ensure text in hero links is also light */
+.hero--primary a {
+  color: var(--ifm-color-primary-lighter); /* Or another light, contrasting color */
+}
+.hero--primary a:hover {
+  color: var(--ifm-color-primary-lightest);
+}
+
+
+/* Ensure full height for layout */
+html, body, #__docusaurus {
+  height: 100%;
+}
+
+#__docusaurus {
   display: flex;
-  background-color: var(--ifm-navbar-link-color);
-  mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E");
-  transition: background-color var(--ifm-transition-fast) var(--ifm-transition-timing-default);
+  flex-direction: column;
 }
 
-.header-github-link:hover::before {
-  background-color: var(--ifm-navbar-link-hover-color);
+.main-wrapper {
+  flex-grow: 1;
 }
 
-/*  Keyboard search keys */
-kbd {
-  &[class^='searchHint_'] {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--docsearch-key-gradient);
-    border: 0;
-    border-radius: 3px;
-    box-shadow: var(--docsearch-key-shadow);
-    color: var(--docsearch-muted-color);
-    height: 20px;
-    margin-right: 0.4em;
-    padding: 0 7px 2px;
-  }
+/* Further custom global styles can be added here */
 
-  &.searchHint_btn {
-    display: inline-block;
-    align-items: unset;
-    justify-content: unset;
-    height: unset;
-    margin-left: 0.4rem;
-    padding: 4px 10px;
-  }
+/* Style for cards to include backdrop-filter if possible, and border */
+.card {
+  background-color: var(--ifm-card-background-color); /* This now uses the gradient from --kf-card-background */
+  border: 1px solid var(--ifm-card-border-color);
+  border-radius: var(--ifm-card-border-radius);
+  box-shadow: var(--ifm-global-shadow-md);
+  backdrop-filter: blur(10px); /* Approx backdrop-blur-lg */
+  -webkit-backdrop-filter: blur(10px);
 }
 
-/* Search navbar (local search) */
-.navbar__search-input {
-  padding: 0 2rem 0 2.25rem;
-  width: 13.5rem;
+/* Ensure main content areas have the dark background */
+.main-wrapper,
+.docs-wrapper,
+.blog-wrapper,
+main /* Generic main tag as a fallback */ {
+  background-color: var(--kf-background-dark);
+  color: var(--kf-text-primary);
 }
 
-code[class^='codeBlockLines_'] {
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
+/* Styling for documentation page headings */
+[data-theme='dark'] .theme-doc-markdown h1 {
+  color: var(--ifm-color-primary-lightest); /* A very light purple or even white could work */
+  /* If you want a gradient for H1, it's more complex and might require component swizzling for MDX 
+  background-image: linear-gradient(to right, var(--ifm-color-primary-dark), var(--ifm-color-primary-light), var(--kf-sky-blue-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  */
 }
 
-div[class^='docItemContainer_'] article img {
-  display: block;
-  margin: auto;
-  border-radius: 7px;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -o-border-radius: 7px;
+[data-theme='dark'] .theme-doc-markdown h2 {
+  color: var(--ifm-color-primary-light); /* Lighter purple for section titles */
+  /* border-bottom: 1px solid var(--kf-border-color); // Removed for now */
+  padding-bottom: 0.3em;
+  margin-bottom: 1em;
+  margin-top: 2em;
 }
 
-[class^='title_'] {
-  font-size: 2.3rem !important;
-}
-
-#__blog-post-container img[class^='img_'] {
-  border-radius: 7px;
-  -webkit-border-radius: 7px;
-  -moz-border-radius: 7px;
-  -ms-border-radius: 7px;
-  -o-border-radius: 7px;
-}
-
-/* Tablet */
-@media screen and (max-width: 991px) {
-  /* Search navbar local */
-  .navbar__search-input {
-    width: 14rem;
-    padding: 0 0.5rem 0 2.25rem;
-  }
+[data-theme='dark'] .theme-doc-markdown h3 {
+  /* Apply gradient text style */
+  background-image: linear-gradient(to right, var(--ifm-color-primary), var(--ifm-color-primary-light), var(--kf-sky-blue-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-top: 1.5em;
+  /* Ensure inline display for background-clip to work as expected with block element */
+  display: inline-block; /* Or block, but may need width adjustments if it causes layout issues */
+  padding-bottom: 0.1em; /* Small padding to ensure gradient shows if descenders are cut off */
 }

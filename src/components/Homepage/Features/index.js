@@ -1,41 +1,41 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 const FeatureList = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Unified Workflow',
+    imgPath: '/img/Unified.png',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and used to get your
-        website up and running quickly.
+        Simple yet powerful tools integrating image, video, and character pipelines.
       </>
     )
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Cutting-Edge Generation',
+    imgPath: '/img/CuttingEdge.png',
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go ahead and move your
-        docs into the <code>docs</code> directory.
+        State-of-the-art AI generating stunningly realistic visuals and consistent characters.
       </>
     )
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Fine-Tuning & Control',
+    imgPath: '/img/Control.png',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can be extended while
-        reusing the same header and footer.
+        Instantly create custom characters and fine-tune every detail with unparalleled control over your AI creations.
       </>
     )
   }
 ]
 
-function Feature({ Svg, title, description }) {
+function Feature({ imgPath, title, description }) {
+  const fullImgPath = useBaseUrl(imgPath);
   return (
     <div>
       <div className='text--center'>
-        <Svg className='mx-auto h-52 w-52' role='img' />
+        <img src={fullImgPath} alt={title} className='mx-auto h-52 w-52 object-contain' />
       </div>
       <div className='text--center padding-horiz--md'>
         <p className='mb-2 text-xl font-bold'>{title}</p>

@@ -10,20 +10,20 @@ import { themes as prismThemes } from 'prism-react-renderer'
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Docusaurus Tailwind Shadcn/ui',
-  tagline: 'Templates Docusaurus with Tailwind CSS and Shadcn/ui',
+  title: 'KreatorFlow Help Center',
+  tagline: 'Your guide to creating with KreatorFlow.AI',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://help.kreatorflow.ai', // Assuming a subdomain
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'namnguyenthanhwork', // Usually your GitHub org/user name.
-  projectName: 'docusaurus-tailwind-shadcn-template', // Usually your repo name.
+  organizationName: 'KreatorFlow', // Usually your GitHub org/user name.
+  projectName: 'help-center', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -51,7 +51,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template/tree/main'
+            'https://github.com/KreatorFlow/help-center/tree/main'
         },
         blog: false,
         theme: {
@@ -65,73 +65,86 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      image: 'img/kreatorflow-social-card.jpg',
       navbar: {
-        title: 'Docusaurus Tailwind Shadcn/ui',
+        title: 'KreatorFlow Help Center',
         logo: {
-          alt: 'Docusaurus Tailwind Shadcn/ui Logo',
-          src: 'img/logo.svg'
+          alt: 'KreatorFlow Logo',
+          src: 'img/logo.png'
         },
         items: [
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial'
+            label: 'Guides'
           },
-          { to: '/blog', label: 'Blog', position: 'left' },
-          {
-            'href': 'https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template',
-            'position': 'right',
-            'className': 'header-github-link',
-            'aria-label': 'GitHub repository'
-          }
+          { to: 'https://kreatorflow.ai/create', label: 'Create', position: 'left' },
+          { to: 'https://kreatorflow.ai/video', label: 'Video', position: 'left' },
+          { to: 'https://kreatorflow.ai/discover', label: 'Discover', position: 'left' },
+          { to: 'https://kreatorflow.ai/pricing', label: 'Pricing', position: 'left' }
         ]
       },
       footer: {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'AI Tools',
             items: [
               {
-                label: 'Tutorial',
+                label: 'AI Image Generator',
+                to: 'https://kreatorflow.ai/create'
+              },
+              {
+                label: 'AI Video Generator',
+                to: 'https://kreatorflow.ai/video'
+              },
+              {
+                label: 'AI Character Generator',
+                to: 'https://kreatorflow.ai/character'
+              },
+              {
+                label: 'AI Face Swap (Coming Soon)',
+                href: '#'
+              },
+              {
+                label: 'AI Image Upscaler (Coming Soon)',
+                href: '#'
+              }
+            ]
+          },
+          {
+            title: 'Help',
+            items: [
+              {
+                label: 'Guides & Tutorials',
                 to: '/docs/intro'
+              },
+              {
+                label: 'team@kreatorflow.ai',
+                href: 'mailto:team@kreatorflow.ai'
+              },
+              {
+                label: 'Discord Community',
+                href: 'https://discord.gg/kreatorflow'
               }
             ]
           },
           {
-            title: 'Community',
+            title: 'Legal',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus'
+                label: 'Privacy Policy',
+                to: 'https://kreatorflow.ai/privacy'
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus'
-              },
-              {
-                label: 'X',
-                href: 'https://x.com/docusaurus'
-              }
-            ]
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog'
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus'
+                label: 'Terms of Service',
+                to: 'https://kreatorflow.ai/terms'
               }
             ]
           }
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Docusaurus Tailwind Shadcn. Templates by <a href="https://github.com/namnguyenthanhwork" style="font-weight: bold;" target="_blank">Thành Nam Nguyễn</a>`
+        copyright: `Copyright © ${new Date().getFullYear()} KreatorFlow.AI. All rights reserved.`
       },
       prism: {
         theme: prismThemes.github,
@@ -174,8 +187,8 @@ const config = {
       {
         path: 'blog',
         editLocalizedFiles: false,
-        blogTitle: 'Blog',
-        blogDescription: 'Blog description is here ...',
+        blogTitle: 'Changelog',
+        blogDescription: 'Latest updates and changes to KreatorFlow.AI.',
         blogSidebarCount: 'ALL',
         blogSidebarTitle: 'List blog',
         routeBasePath: 'blog',
@@ -192,7 +205,7 @@ const config = {
         onUntruncatedBlogPosts: 'ignore',
         // Remove this to remove the "edit this page" links.
         editUrl:
-          'https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template/tree/main/',
+          'https://github.com/KreatorFlow/help-center/tree/main/',
         remarkPlugins: [[require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }]]
       }
     ]
