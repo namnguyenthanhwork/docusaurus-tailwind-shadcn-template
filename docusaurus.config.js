@@ -26,7 +26,11 @@ const config = {
   projectName: 'docusaurus-tailwind-shadcn-template', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn'
+    }
+  },
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -38,7 +42,8 @@ const config = {
 
   // Enable Docusaurs Faster: https://github.com/facebook/docusaurus/issues/10556
   future: {
-    experimental_faster: true
+    experimental_faster: true,
+    v4: true
   },
 
   presets: [
@@ -67,7 +72,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Docusaurus Tailwind Shadcn/ui',
+        title: 'Docusaurus Tailwind',
         logo: {
           alt: 'Docusaurus Tailwind Shadcn/ui Logo',
           src: 'img/logo.svg'
@@ -80,6 +85,11 @@ const config = {
             label: 'Tutorial'
           },
           { to: '/blog', label: 'Blog', position: 'left' },
+          {
+            to: '/about-me',
+            label: 'About Me',
+            position: 'left'
+          },
           {
             'href': 'https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template',
             'position': 'right',
@@ -156,6 +166,7 @@ const config = {
     ]
   ],
   plugins: [
+    ['./src/plugins/webpack-alias.js', {}],
     ['./src/plugins/tailwind-config.js', {}],
     [
       'ideal-image',
