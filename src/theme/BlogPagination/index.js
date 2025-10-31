@@ -8,7 +8,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious
-} from '../../components/ui/pagination.tsx'
+} from '@/components/ui/pagination.tsx'
 
 export const BlogPagination = ({ metadata }) => {
   const history = useHistory()
