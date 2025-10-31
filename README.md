@@ -28,25 +28,25 @@ Website has integrated OpenAPI Docs by `@PaloAltoNetworks/docusaurus-openapi-doc
 
 ## Quick Start
 
-- If you want to use this template (integration docs and blog) with Tailwind v3, switch to the `feature/docusaurus-tailwind-v3` branch.
+- To use this template (docs/blog) with Tailwind v3, switch to the `feature/docusaurus-tailwind-v3` branch.
 
 ```bash
 git clone -b feature/docusaurus-tailwind-v3 https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template.git
 ```
 
-- If you want to use this template (integration docs, api docs and blog) with Tailwind v3, switch to the `feature/docusaurus-tailwind-v3-openapi-docs` branch.
+- To use this template (docs, api docs and blog) with Tailwind v3, switch to the `feature/docusaurus-tailwind-v3-openapi-docs` branch.
 
 ```bash
 git clone -b feature/docusaurus-tailwind-v3-openapi-docs https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template.git
 ```
 
-- If you want to use this template (integration docs and blog) with Tailwind v4, switch to the `feature/docusaurus-tailwind-v4` branch.
+- To use this template (docs/blog) with Tailwind v4, switch to the `feature/docusaurus-tailwind-v4` branch.
 
 ```bash
 git clone -b feature/docusaurus-tailwind-v4 https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template.git
 ```
 
-- If you want to use this template (integration docs, api docs and blog) with Tailwind v4, use `main` branch or switch to the `feature/docusaurus-tailwind-v4-openapi-docs` branch.
+- To use this template (docs, api docs and blog) with Tailwind v4, use `main` branch or switch to the `feature/docusaurus-tailwind-v4-openapi-docs` branch.
 
 ```bash
 git clone -b feature/docusaurus-tailwind-v4-openapi-docs https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template.git
@@ -140,14 +140,14 @@ In v3, you can customize the TailwindCSS configuration in `tailwind.config.js`.
 // tailwind.config.js
 module.exports = {
   corePlugins: {
-    preflight: false,
+    preflight: false
   },
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "./docs/**/*.{js,jsx,ts,tsx}",
-    "./blog/**/*.{js,jsx,ts,tsx}",
+    './src/**/*.{js,jsx,ts,tsx}',
+    './docs/**/*.{js,jsx,ts,tsx}',
+    './blog/**/*.{js,jsx,ts,tsx}'
   ],
-  darkMode: ["class", '[data-theme="dark"]'], // Support Docusaurus dark mode
+  darkMode: ['class', '[data-theme="dark"]'] // Support Docusaurus dark mode
   // ... rest of the configuration
 }
 ```
@@ -161,18 +161,82 @@ Read more about [TailwindCSS v4](https://tailwindcss.com/blog/tailwindcss-v4).
 All Shadcn/UI components are located in `src/components/ui/`. To use a component:
 
 ```tsx
-import { Button } from '../components/ui/button';
+import { Button } from '@/components/ui/button'
 
 function MyComponent() {
-  return (
-    <Button variant="outline">
-      Click me
-    </Button>
-  );
+  return <Button variant='outline'>Click me</Button>
 }
 ```
 
 **Note:** Because Docusaurus doesn't support CLI installation for Shadcn/UI, you'll need to manually copy the components and adjust the import paths.
+
+### Alias Configuration
+
+This project includes configured path aliases to simplify imports and improve code organization. The aliases are set up in two places:
+
+#### 1. JSConfig Configuration (`jsconfig.json`)
+
+The `jsconfig.json` file provides TypeScript-like path mapping for better IDE support and IntelliSense:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@css/*": ["src/css/*"],
+      "@lib/*": ["src/lib/*"],
+      "@pages/*": ["src/pages/*"],
+      "@plugins/*": ["src/plugins/*"],
+      "@theme/*": ["src/theme/*"]
+    }
+  }
+}
+```
+
+#### 2. Webpack Alias Configuration (`src/plugins/webpack-alias.js`)
+
+The webpack alias plugin ensures that these paths work at build time:
+
+```javascript
+const path = require('path')
+
+module.exports = function () {
+  return {
+    name: 'webpack-alias-plugin',
+    configureWebpack() {
+      return {
+        resolve: {
+          alias: {
+            '@': path.resolve(__dirname, '../'),
+            '@components': path.resolve(__dirname, '../components'),
+            '@css': path.resolve(__dirname, '../css'),
+            '@lib': path.resolve(__dirname, '../lib'),
+            '@pages': path.resolve(__dirname, '../pages'),
+            '@plugins': path.resolve(__dirname, '../plugins'),
+            '@theme': path.resolve(__dirname, '../theme')
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+#### Usage Examples
+
+With these aliases, you can use cleaner import statements:
+
+```tsx
+// Instead of relative imports like this:
+import { Button } from '../../../components/ui/button'
+import { cn } from '../../../lib/utils'
+
+// You can use alias imports:
+import { Button } from '@components/ui/button'
+import { cn } from '@lib/utils'
+```
 
 ### Search Configuration
 
@@ -441,14 +505,10 @@ Example:
 
 ```tsx
 // src/components/ui/custom-button.tsx
-import { Button } from './button';
+import { Button } from '@/components/ui/button'
 
 export function CustomButton({ children }) {
-  return (
-    <Button className="custom-styles">
-      {children}
-    </Button>
-  );
+  return <Button className='custom-styles'>{children}</Button>
 }
 ```
 

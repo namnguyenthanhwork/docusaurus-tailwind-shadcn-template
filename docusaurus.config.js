@@ -24,15 +24,25 @@ const config = {
   projectName: 'docusaurus-tailwind-shadcn-template', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn'
+    }
+  },
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
-  i18n: { defaultLocale: 'en', locales: ['en'] },
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en']
+  },
 
   // Enable Docusaurs Faster: https://github.com/facebook/docusaurus/issues/10556
-  future: { experimental_faster: true },
+  future: {
+    experimental_faster: true,
+    v4: true
+  },
 
   presets: [
     [
@@ -48,7 +58,9 @@ const config = {
           docItemComponent: '@theme/ApiItem' // Derived from docusaurus-theme-openapi
         },
         blog: false,
-        theme: { customCss: './src/css/custom.css' }
+        theme: {
+          customCss: './src/css/custom.css'
+        }
       })
     ]
   ],
@@ -59,12 +71,33 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Docusaurus Tailwind Shadcn/ui',
-        logo: { alt: 'Docusaurus Tailwind Shadcn/ui Logo', src: 'img/logo.svg' },
+        title: 'Docusaurus Tailwind',
+        logo: {
+          alt: 'Docusaurus Tailwind Shadcn/ui Logo',
+          src: 'img/logo.svg'
+        },
         items: [
-          { type: 'docSidebar', sidebarId: 'tutorialSidebar', position: 'left', label: 'Tutorial' },
-          { to: '/blog', label: 'Blog', position: 'left' },
-          { label: 'Petstore API', position: 'left', to: '/docs/category/petstore-versioned-api' },
+          {
+            type: 'docSidebar',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'Tutorial'
+          },
+          {
+            to: '/blog',
+            label: 'Blog',
+            position: 'left'
+          },
+          {
+            to: '/about-me',
+            label: 'About Me',
+            position: 'left'
+          },
+          {
+            label: 'Petstore API',
+            position: 'left',
+            to: '/docs/category/petstore-versioned-api'
+          },
           {
             'href': 'https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template',
             'position': 'right',
@@ -73,11 +106,24 @@ const config = {
           }
         ]
       },
-      docs: { sidebar: { autoCollapseCategories: true, hideable: true } },
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true,
+          hideable: true
+        }
+      },
       footer: {
         style: 'dark',
         links: [
-          { title: 'Docs', items: [{ label: 'Tutorial', to: '/docs/intro' }] },
+          {
+            title: 'Docs',
+            items: [
+              {
+                label: 'Tutorial',
+                to: '/docs/intro'
+              }
+            ]
+          },
           {
             title: 'Community',
             items: [
@@ -85,15 +131,27 @@ const config = {
                 label: 'Stack Overflow',
                 href: 'https://stackoverflow.com/questions/tagged/docusaurus'
               },
-              { label: 'Discord', href: 'https://discordapp.com/invite/docusaurus' },
-              { label: 'X', href: 'https://x.com/docusaurus' }
+              {
+                label: 'Discord',
+                href: 'https://discordapp.com/invite/docusaurus'
+              },
+              {
+                label: 'X',
+                href: 'https://x.com/docusaurus'
+              }
             ]
           },
           {
             title: 'More',
             items: [
-              { label: 'Blog', to: '/blog' },
-              { label: 'GitHub', href: 'https://github.com/facebook/docusaurus' }
+              {
+                label: 'Blog',
+                to: '/blog'
+              },
+              {
+                label: 'GitHub',
+                href: 'https://github.com/facebook/docusaurus'
+              }
             ]
           }
         ],
@@ -153,6 +211,7 @@ const config = {
     'docusaurus-theme-openapi-docs'
   ],
   plugins: [
+    ['./src/plugins/webpack-alias.js', {}],
     ['./src/plugins/tailwind-config.js', {}],
     [
       'docusaurus-plugin-openapi-docs',
