@@ -8,7 +8,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious
-} from '../../components/ui/pagination.tsx'
+} from '@/components/ui/pagination.tsx'
 
 export const BlogPagination = ({ metadata }) => {
   const history = useHistory()
@@ -86,7 +86,7 @@ export const BlogPagination = ({ metadata }) => {
               <PaginationLink
                 onClick={() => handlePageChange(pageNum)}
                 isActive={page === pageNum}
-                className='cursor-pointer shadow-sm'
+                className='shadow-xs cursor-pointer'
               >
                 {pageNum}
               </PaginationLink>

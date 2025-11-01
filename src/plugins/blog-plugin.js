@@ -14,8 +14,8 @@ async function blogPluginExtended(...pluginArgs) {
     contentLoaded: async function (params) {
       const { content, actions } = params
 
-      // Get the 4 latest blog posts
-      const recentPostsLimit = 4
+      // Get the 6 latest blog posts
+      const recentPostsLimit = 6
       const recentPosts = [...content.blogPosts].splice(0, recentPostsLimit)
 
       async function createRecentPostModule(blogPost, index) {

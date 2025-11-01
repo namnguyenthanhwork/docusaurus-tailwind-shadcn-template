@@ -9,7 +9,7 @@ export default function BlogLayout(props) {
 
   return (
     <Layout {...layoutProps}>
-      <div className='margin-vert--lg container max-w-7xl'>
+      <div className='container max-w-7xl px-4 py-10'>
         <div className='row'>
           <BlogSidebar sidebar={sidebar} hideOnDesktop />
           <main

@@ -1,0 +1,9 @@
+.tags {
+  display: inline;
+}
+
+.tag {
+  margin: 0 0.4rem 0.5rem 0;
+  display: inline-block;
+  font-size: 14px;
+}
