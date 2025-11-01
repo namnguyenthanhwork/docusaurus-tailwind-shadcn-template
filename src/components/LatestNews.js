@@ -4,35 +4,40 @@ import Image from '@theme/IdealImage'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import TagsListInline from '@theme/TagsListInline'
 
-import { Avatar } from '../../components/ui/avatar'
-import { Card, CardContent, CardFooter } from '../../components/ui/card'
-import { Button } from '../../components/ui/button'
-import TimeStamp from '../TimeStamp'
+import TimeStamp from './TimeStamp'
+import { Avatar } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
 
 function RecentBlogPostCard({ recentPost }) {
   const { blogData } = recentPost
 
   return (
-    <Card className='flex w-full flex-col border-0 bg-transparent shadow-none'>
-      <Link
-        to={blogData.metadata.permalink}
-        className='overflow-hidden transition-opacity hover:opacity-90'
-      >
+    <Card className='flex w-full flex-col gap-0 py-0 dark:bg-slate-900'>
+      <Link to={blogData.metadata.permalink}>
         <Image
-          className='block h-auto w-full rounded-lg object-cover'
+          className='block h-auto w-full rounded-t-lg object-cover'
           img={useBaseUrl(blogData.metadata.frontMatter.image)}
           alt={blogData.metadata.title}
           loading='lazy'
         />
       </Link>
 
-      <CardContent className='mt-2 p-4'>
+      <CardContent className='p-6'>
+        {blogData.metadata.tags.length > 0 && (
+          <div className='blog-tags m-0 flex flex-wrap gap-2'>
+            <TagsListInline tags={blogData.metadata.tags} />
+          </div>
+        )}
+
         <Link to={blogData.metadata.permalink} className='mt-4'>
-          <p className='mb-1 p-0 text-xl font-semibold'>{blogData.metadata.title}</p>
+          <p className='mb-1 p-0 text-xl font-semibold text-foreground'>
+            {blogData.metadata.title}
+          </p>
         </Link>
 
         <p className='mb-4 mt-2 line-clamp-2 dark:text-gray-400'>{blogData.metadata.description}</p>
-        <div className='my-2 flex flex-wrap items-center gap-2'>
+        <div className='flex items-center -space-x-2 *:data-[slot=avatar]:size-12 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale'>
           {blogData.metadata.authors.map((author, index) => (
             <Link
               href={author.page.permalink}
@@ -50,7 +55,7 @@ function RecentBlogPostCard({ recentPost }) {
             </Link>
           ))}
 
-          <div className='text-sm dark:text-gray-400'>
+          <div className='!ml-4 text-sm dark:text-gray-400'>
             <span>
               <TimeStamp timestamp={blogData.metadata.date} />
             </span>
@@ -59,29 +64,21 @@ function RecentBlogPostCard({ recentPost }) {
           </div>
         </div>
       </CardContent>
-
-      <CardFooter className='px-2'>
-        {blogData.metadata.tags.length > 0 && (
-          <div className='blog-tags flex flex-wrap gap-2'>
-            <TagsListInline tags={blogData.metadata.tags} />
-          </div>
-        )}
-      </CardFooter>
     </Card>
   )
 }
 
 export default function LatestNews({ homePageBlogMetadata, recentPosts }) {
   return (
-    <div className='container my-16 max-w-7xl'>
+    <div className='mx-auto my-16 max-w-7xl px-4'>
       <div className='mb-16 text-center'>
         <h2 className='mb-4 text-3xl font-bold'>{homePageBlogMetadata.blogTitle}</h2>
         <p>{homePageBlogMetadata.blogDescription}</p>
       </div>
 
-      <div className='grid grid-cols-1 gap-8 sm:grid-cols-2'>
+      <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3'>
         {recentPosts.map((recentPost, index) => (
-          <div key={index}>
+          <div key={index} className='flex'>
             <RecentBlogPostCard recentPost={recentPost} />
           </div>
         ))}

@@ -24,7 +24,11 @@ const config = {
   projectName: 'docusaurus-tailwind-shadcn-template', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn'
+    }
+  },
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -32,7 +36,10 @@ const config = {
   i18n: { defaultLocale: 'en', locales: ['en'] },
 
   // Enable Docusaurs Faster: https://github.com/facebook/docusaurus/issues/10556
-  future: { experimental_faster: true },
+  future: {
+    experimental_faster: true,
+    v4: true
+  },
 
   presets: [
     [
@@ -59,11 +66,16 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Docusaurus Tailwind Shadcn/ui',
+        title: 'Docusaurus Tailwind',
         logo: { alt: 'Docusaurus Tailwind Shadcn/ui Logo', src: 'img/logo.svg' },
         items: [
           { type: 'docSidebar', sidebarId: 'tutorialSidebar', position: 'left', label: 'Tutorial' },
           { to: '/blog', label: 'Blog', position: 'left' },
+          {
+            to: '/about-me',
+            label: 'About Me',
+            position: 'left'
+          },
           { label: 'Petstore API', position: 'left', to: '/docs/category/petstore-versioned-api' },
           {
             'href': 'https://github.com/namnguyenthanhwork/docusaurus-tailwind-shadcn-template',
@@ -153,6 +165,7 @@ const config = {
     'docusaurus-theme-openapi-docs'
   ],
   plugins: [
+    ['./src/plugins/webpack-alias.js', {}],
     ['./src/plugins/tailwind-config.js', {}],
     [
       'docusaurus-plugin-openapi-docs',
