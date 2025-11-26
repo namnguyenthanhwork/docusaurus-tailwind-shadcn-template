@@ -2,7 +2,7 @@
 
 This project demonstrates how to integrate TailwindCSS and Shadcn/UI with Docusaurus V3, creating a modern documentation website with beautiful, accessible UI components. Perfect for technical documentation, api docs, blogs, and project websites.
 
-[**View Demo →**](https://docusaurus-tailwind-shadcn-template.vercel.app)
+[**View Demo →**](https://docusaurus-tailwind-shadcn-template.netlify.app)
 
 ## Technology Stack
 
