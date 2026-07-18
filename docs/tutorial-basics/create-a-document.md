@@ -10,7 +10,7 @@ Documents are **groups of pages** connected through:
 - **previous/next navigation**
 - **versioning**
 
-## Create your first Doc
+## Create your first Doc {/* #create-your-first-doc */}
 
 Create a Markdown file at `docs/hello.md`:
 
@@ -22,7 +22,7 @@ This is my **first Docusaurus document**!
 
 A new document is now available at [http://localhost:3000/docs/hello](http://localhost:3000/docs/hello).
 
-## Configure the Sidebar
+## Configure the Sidebar {/* #configure-the-sidebar */}
 
 Docusaurus automatically **creates a sidebar** from the `docs` folder.
 

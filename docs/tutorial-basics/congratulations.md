@@ -12,7 +12,7 @@ Have **5 more minutes**? Take a look at **[versioning](../tutorial-extras/manage
 
 Anything **unclear** or **buggy** in this tutorial? [Please report it!](https://github.com/facebook/docusaurus/discussions/4610)
 
-## What's next?
+## What's next? {/* #whats-next */}
 
 - Read the [official documentation](https://docusaurus.io/)
 - Modify your site configuration with [`docusaurus.config.js`](https://docusaurus.io/docs/api/docusaurus-config)

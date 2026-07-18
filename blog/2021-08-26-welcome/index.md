@@ -8,7 +8,7 @@ tags: [facebook, hello, docusaurus]
 
 [Docusaurus blogging features](https://docusaurus.io/docs/blog) are powered by the [blog plugin](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog).
 
-## I. Create a new blog post {#create-a-new-blog-post}
+## I. Create a new blog post {/* #create-a-new-blog-post */}
 
 Simply add Markdown files (or folders) to the `blog` directory.
 

@@ -7,10 +7,13 @@ This project demonstrates how to integrate TailwindCSS and Shadcn/UI with Docusa
 ## Technology Stack
 
 - ⚡️ Docusaurus V3
+- 🟦 TypeScript throughout (config, plugins, theme, components)
+- 🥟 [Bun](https://bun.sh) as the package manager and runtime
 - 🎨 TailwindCSS for styling (Support v3 and v4)
 - 🧩 Shadcn/UI components
 - 🔍 `@easyops-cn/docusaurus-search-local` for search functionality
 - 📝 Support generation API Docs by `@PaloAltoNetworks/docusaurus-openapi-docs` plugin
+- 🖊️ Git-based Admin CMS powered by [Sveltia CMS](https://github.com/sveltia/sveltia-cms), served from `static/admin`
 - 📱 Fully responsive design
 - 🌗 Light/dark mode support
 
@@ -22,7 +25,7 @@ This project demonstrates how to integrate TailwindCSS and Shadcn/UI with Docusa
 - **Dark Mode**: Seamless dark mode support with Docusaurus and Shadcn/UI
 - **Performance Optimized**: Built with performance best practices
 
-The website also features a new blog UI was built using TailwindCSS & Shadcn/UI components and provides a modern, clean interface for displaying blog posts. The blog posts are managed by a custom blog plugin, defined in `src/plugins/blog-plugin.js` and homepage config in `components/Homepage/index.js`.
+The website also features a new blog UI was built using TailwindCSS & Shadcn/UI components and provides a modern, clean interface for displaying blog posts. The blog posts are managed by a custom blog plugin, defined in `src/plugins/blog-plugin.ts` and homepage config in `src/components/homepage/index.tsx`.
 
 Website has integrated OpenAPI Docs by `@PaloAltoNetworks/docusaurus-openapi-docs` plugin. You can see the API Docs in [API Docs](https://docusaurus-openapi.tryingpan.dev/).
 
@@ -66,13 +69,17 @@ Vercel will copy the [Docusaurus TailwindCSS Shadcn/ui](https://github.com/namng
 
 Go to the platform of your choice and follow the instructions to deploy a new site from a Git repository.
 
-Notice: Use yarn instead of npm for Cloudflare Pages.
+Notice: Use `bun` as the install command for Cloudflare Pages, it's a fast JS runtime.
+
+Workers & Page: Go to settings project -> Build -> Change build command to `bun install && bun run build`. In Variables and secrets: add `BUN_VERSION` and value `1.3.11`
 
 ### Netlify and Others
 
 Go to the platform of your choice and follow the instructions to deploy a new site from a Git repository.
 
 ## Local Development
+
+This project uses [Bun](https://bun.sh) (`>=1.3.0`) as the package manager and runtime. Node.js `>=24.0` is also required.
 
 1. Clone the repository:
 
@@ -84,25 +91,31 @@ cd docusaurus-tailwind-shadcn-template
 2. Install dependencies:
 
 ```bash
-yarn install or npm install
+bun install
 ```
 
 3. Start the development server:
 
 ```bash
-yarn start or npm start
+bun start
 ```
 
-4. Build for production:
+4. Type-check the project:
 
 ```bash
-yarn build or npm run build
+bun run typecheck
 ```
 
-5. Serve the production build:
+5. Build for production:
 
 ```bash
-yarn serve or npm run serve
+bun run build
+```
+
+6. Serve the production build:
+
+```bash
+bun run serve
 ```
 
 ## Project Structure
@@ -114,18 +127,24 @@ docusaurus-tailwind-shadcn-template/
 ├── docs/
 ├── src/
 │   ├── components/
+│   │   ├── homepage/     # Homepage sections (hero, features, latest news wiring)
+│   │   ├── personal/     # About-me page sections
+│   │   ├── shared/       # Components shared across pages (HeroBanner, LatestNews, TimeStamp)
 │   │   └── ui/           # Shadcn/UI components
 │   ├── css/
 │   │   └── custom.css    # TailwindCSS config and custom styles
 │   ├── lib/
 │   │   └── utils.ts      # Utility functions
-│   ├── pages/            # React pages
-│   ├── plugins/          # Docusaurus plugins
-│   └── theme/            # Docusaurus theme customization
-├── static/               # Static assets
+│   ├── pages/            # React pages (.tsx)
+│   ├── plugins/          # Docusaurus plugins (.ts)
+│   └── theme/            # Docusaurus theme customization (swizzled components, .tsx)
+├── static/
+│   └── admin/            # Sveltia CMS (config.yml + index.html), served at /admin
 ├── tailwind.config.js    # TailwindCSS configuration (if using v3, removed in v4)
 ├── postcss.config.js     # PostCSS configuration
-└── docusaurus.config.js  # Docusaurus configuration
+├── tsconfig.json         # TypeScript configuration and path aliases
+├── sidebars.ts           # Docs sidebar configuration
+└── docusaurus.config.ts  # Docusaurus configuration
 ```
 
 ## Configuration
@@ -174,35 +193,41 @@ function MyComponent() {
 
 This project includes configured path aliases to simplify imports and improve code organization. The aliases are set up in two places:
 
-#### 1. JSConfig Configuration (`jsconfig.json`)
+#### 1. TypeScript Configuration (`tsconfig.json`)
 
-The `jsconfig.json` file provides TypeScript-like path mapping for better IDE support and IntelliSense:
+The `tsconfig.json` file provides path mapping for TypeScript, IDE support, and IntelliSense:
 
 ```json
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@css/*": ["src/css/*"],
-      "@lib/*": ["src/lib/*"],
-      "@pages/*": ["src/pages/*"],
-      "@plugins/*": ["src/plugins/*"],
-      "@theme/*": ["src/theme/*"]
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@css/*": ["./src/css/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@plugins/*": ["./src/plugins/*"],
+      "@store/*": ["./src/store/*"],
+      "@theme/*": ["./src/theme/*"],
+      "@types/*": ["./src/types/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@utils/*": ["./src/utils/*"]
     }
   }
 }
 ```
 
-#### 2. Webpack Alias Configuration (`src/plugins/webpack-alias.js`)
+#### 2. Webpack Alias Configuration (`src/plugins/webpack-alias.ts`)
 
 The webpack alias plugin ensures that these paths work at build time:
 
-```javascript
-const path = require('path')
+```typescript
+import path from 'node:path'
 
-module.exports = function () {
+import type { Plugin } from '@docusaurus/types'
+
+export default function webpackAliasPlugin(): Plugin<void> {
   return {
     name: 'webpack-alias-plugin',
     configureWebpack() {
@@ -212,10 +237,15 @@ module.exports = function () {
             '@': path.resolve(__dirname, '../'),
             '@components': path.resolve(__dirname, '../components'),
             '@css': path.resolve(__dirname, '../css'),
+            '@hooks': path.resolve(__dirname, '../hooks'),
             '@lib': path.resolve(__dirname, '../lib'),
             '@pages': path.resolve(__dirname, '../pages'),
             '@plugins': path.resolve(__dirname, '../plugins'),
-            '@theme': path.resolve(__dirname, '../theme')
+            '@store': path.resolve(__dirname, '../store'),
+            '@theme': path.resolve(__dirname, '../theme'),
+            '@types': path.resolve(__dirname, '../types'),
+            '@constants': path.resolve(__dirname, '../constants'),
+            '@utils': path.resolve(__dirname, '../utils')
           }
         }
       }
@@ -240,9 +270,9 @@ import { cn } from '@lib/utils'
 
 ### Search Configuration
 
-The local search is configured in `docusaurus.config.js`:
+The local search is configured in `docusaurus.config.ts`:
 
-```javascript
+```typescript
 themes: [
   [
     require.resolve('@easyops-cn/docusaurus-search-local'),
@@ -268,36 +298,31 @@ The [docusaurus-plugin-openapi-docs](https://github.com/PaloAltoNetworks/docusau
 If you don't have `docusaurus-plugin-openapi-docs` and `docusaurus-theme-openapi-docs` installed, you can install it by running:
 
 ```bash
-yarn install docusaurus-openapi-docs docusaurus-theme-openapi-docs
-```
-
-or
-
-```bash
-npm install docusaurus-openapi-docs docusaurus-theme-openapi-docs
+bun add docusaurus-plugin-openapi-docs docusaurus-theme-openapi-docs
 ```
 
 #### Configuration Generator
 
 **Required:** You must have `.yaml` files in the `api-swagger` directory. The plugin will generate API docs based on these files.
 
-Here is an example of properly configuring `docusaurus.config.js` for `docusaurus-plugin-openapi-docs` and `docusaurus-theme-openapi-docs` usage.
+Here is an example of properly configuring `docusaurus.config.ts` for `docusaurus-plugin-openapi-docs` and `docusaurus-theme-openapi-docs` usage.
 
-```javascript
-// docusaurus.config.js
+```typescript
+// docusaurus.config.ts
+import type { Options as PresetClassicOptions } from '@docusaurus/preset-classic'
+
 {
   presets: [
     [
       'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         docs: {
-          sidebarPath: './sidebars.js',
+          sidebarPath: './sidebars.ts',
           docItemComponent: '@theme/ApiItem' // Derived from docusaurus-theme-openapi
         },
         blog: false,
         theme: { customCss: './src/css/custom.css' }
-      })
+      } satisfies PresetClassicOptions
     ]
   ],
 
@@ -349,7 +374,7 @@ Here is an example of properly configuring `docusaurus.config.js` for `docusauru
 }
 ```
 
-Add prism and language support in `docusaurus.config.js`: see sample code in `docusaurus.config.js - themeConfig`.
+Add prism and language support in `docusaurus.config.ts`: see sample code in `docusaurus.config.ts - themeConfig`.
 
 #### Generating and Cleaning API Docs
 
@@ -367,53 +392,39 @@ Add scripts to `package.json` if not exist:
 Generating versioned API docs example (current version):
 
 ```bash
-yarn gen-api-docs <id config>
-```
-
-or
-
-```bash
-npm run gen-api-docs <id config>
+bun run gen-api-docs <id config>
 ```
 
 Generating all Petstore versioned API docs (exclude current version):
 
 ```bash
-yarn gen-api-docs:version petstore:all
-```
-
-or
-
-```bash
-npm run gen-api-docs:version petstore:all
+bun run gen-api-docs:version petstore:all
 ```
 
 Cleaning versioned API docs example:
 
 ```bash
-yarn clean-api-docs <id config>
-```
-
-or
-
-```bash
-npm run clean-api-docs <id config>
+bun run clean-api-docs <id config>
 ```
 
 or delete the `docs/<id>` directory manually.
 
 #### API Docs Sidebar
 
-You can customize the API Docs sidebar by editing the `sidebars.js` file.
+You can customize the API Docs sidebar by editing the `sidebars.ts` file.
 
-```javascript
-// sidebars.js
-import petstoreVersions from './docs/petstore_versioned/versions.json' // import if using multi versioned sidebar
-
+```typescript
+// sidebars.ts
+// import if using multi versioned sidebar
 import { versionCrumb, versionSelector } from 'docusaurus-plugin-openapi-docs/lib/sidebars/utils'
 
-import petstoreVersionedSidebar from './docs/petstore_versioned/sidebar' // import when run generate API Docs command
-import petstoreVersionSidebar from './docs/petstore_versioned/1.0.0/sidebar' // import when run generate API Docs command
+// import when run generate API Docs command
+import petstoreVersionSidebar from './docs/petstore_versioned/1.0.0/sidebar'
+import petstoreVersions from './docs/petstore_versioned/versions.json'
+
+import petstoreVersionedSidebar from './docs/petstore_versioned/sidebar'
+
+// import when run generate API Docs command
 
 const sidebars = {
   // sidebar for docs
@@ -514,6 +525,32 @@ export default sidebars
 
 👉 Read more config about [docusaurus-plugin-openapi-docs](https://docusaurus-openapi.tryingpan.dev/)
 
+### Admin CMS (Sveltia CMS)
+
+This project ships a Git-based Admin CMS at `static/admin`, so it's served at `/admin` on the built site (e.g. `http://localhost:3000/admin` in dev). It uses [Sveltia CMS](https://github.com/sveltia/sveltia-cms), a Decap/Netlify CMS compatible, actively maintained alternative that needs no extra dependency — `static/admin/index.html` loads it straight from a CDN (`https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js`).
+
+- `static/admin/index.html` — the CMS entry page, points to `config.yml` and loads the Sveltia CMS script
+- `static/admin/config.yml` — defines the `backend` (GitHub repo/branch) and all `collections` (blog posts, docs, authors)
+
+#### Local editing
+
+`config.yml` sets `local_backend: true`, which lets Sveltia CMS work directly against your local git checkout instead of GitHub, using the File System Access API (Chromium-based browsers only, e.g. Chrome/Edge):
+
+1. Run `bun start` and open `http://localhost:3000/admin`
+2. Click **Work with Local Repository** and grant access to the project folder
+3. Edits are written straight to the local files in `blog/` / `docs/` — review and commit them with git as usual
+
+#### Production editing
+
+In production the CMS commits directly to GitHub via the `backend` config (`repo`, `branch`) in `config.yml`. Signing in with GitHub requires an OAuth client:
+
+- **Netlify**: OAuth is handled automatically by Netlify's identity/git-gateway integration, no extra setup needed
+- **Vercel / Cloudflare Pages / other hosts**: you need to deploy your own GitHub OAuth app/proxy (Sveltia CMS is compatible with the same OAuth provider setup as Decap CMS, e.g. [`sveltia-cms-auth`](https://github.com/sveltia/sveltia-cms-auth)) and reference it via `backend.base_url` in `config.yml`
+
+#### Customizing collections
+
+Edit `static/admin/config.yml` to add/remove `collections` (each maps to a folder like `blog` or `docs/...` and a set of frontmatter `fields`). See the [Sveltia CMS docs](https://github.com/sveltia/sveltia-cms#configuration) (config format is the same as Decap/Netlify CMS) for all available widgets and options.
+
 ## Customization theme
 
 1. Modify colors in `tailwind.config.js` (v3) or `src/css/custom.css` (v4)
@@ -522,23 +559,31 @@ export default sidebars
 
 ### Adding New Components
 
-1. Create component in `src/components/ui/` or `src/components/`
+1. Create the component under `src/components/ui/` (Shadcn/UI primitives), `src/components/shared/` (components reused across multiple pages), or a page-specific folder like `src/components/homepage/` / `src/components/personal/`
 2. Import and use in your pages/docs
 
 Example:
 
 ```tsx
 // src/components/ui/custom-button.tsx
+import type { ReactNode } from 'react'
+
 import { Button } from '@/components/ui/button'
 
-export function CustomButton({ children }) {
+export function CustomButton({ children }: { children: ReactNode }) {
   return <Button className='custom-styles'>{children}</Button>
 }
 ```
 
 ### Overriding Docusaurus Components
 
-You can override Docusaurus components by Swizzling. Read more about [Component Swizzling](https://docusaurus.io/docs/swizzling).
+You can override Docusaurus components by Swizzling. Since this project is TypeScript-first, prefer the `--typescript` flag so ejected components land in `src/theme/` as `.tsx`:
+
+```bash
+bun run swizzle @docusaurus/theme-classic <ComponentName> --typescript --eject
+```
+
+Read more about [Component Swizzling](https://docusaurus.io/docs/swizzling).
 
 ## Contributing
 

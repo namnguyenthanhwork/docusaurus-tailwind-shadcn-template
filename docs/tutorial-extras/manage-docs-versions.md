@@ -6,7 +6,7 @@ sidebar_position: 1
 
 Docusaurus can manage multiple versions of your docs.
 
-## Create a docs version
+## Create a docs version {/* #create-a-docs-version */}
 
 Release a version 1.0 of your project:
 
@@ -21,7 +21,7 @@ Your docs now have 2 versions:
 - `1.0` at `http://localhost:3000/docs/` for the version 1.0 docs
 - `current` at `http://localhost:3000/docs/next/` for the **upcoming, unreleased docs**
 
-## Add a Version Dropdown
+## Add a Version Dropdown {/* #add-a-version-dropdown */}
 
 To navigate seamlessly across versions, add a version dropdown.
 
@@ -47,7 +47,7 @@ The docs version dropdown appears in your navbar:
 
 ![Docs Version Dropdown](./img/docsVersionDropdown.png)
 
-## Update an existing version
+## Update an existing version {/* #update-an-existing-version */}
 
 It is possible to edit versioned docs in their respective folder:
 

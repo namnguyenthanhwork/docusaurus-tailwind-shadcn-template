@@ -1,0 +1,247 @@
+local_backend: true
+
+logo_url: /img/docusaurus.png
+
+backend:
+  name: github
+  repo: namnguyenthanhwork/docusaurus-tailwind-shadcn-template
+  branch: main
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  # Blog Posts Collection (Markdown)
+  - name: blog
+    label: Blog Posts
+    label_singular: Blog Post
+    folder: blog
+    create: true
+    delete: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Slug, name: slug, widget: string, required: true }
+      - { label: Title, name: title, widget: string, required: true }
+      - { label: Featured Image, name: image, widget: image, required: false }
+      - label: Authors
+        name: authors
+        widget: list
+        required: true
+        default: ['thanhnamnguyen']
+        hint: Select authors from authors.yml
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        hint: Add tags for categorization
+      - { label: Body, name: body, widget: markdown }
+  
+  # Blog Posts in Folders (Markdown)
+  - name: blog-folders
+    label: Blog Posts (Folders)
+    label_singular: Blog Post (Folder)
+    folder: blog
+    create: true
+    delete: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    path: '{{slug}}/index'
+    extension: md
+    format: frontmatter
+    media_folder: ''
+    public_folder: ''
+    fields:
+      - { label: Slug, name: slug, widget: string, required: true }
+      - { label: Title, name: title, widget: string, required: true }
+      - { label: Featured Image, name: image, widget: image, required: false }
+      - label: Authors
+        name: authors
+        widget: list
+        required: true
+        default: ['thanhnamnguyen']
+        hint: Select authors from authors.yml
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        hint: Add tags for categorization
+      - { label: Body, name: body, widget: markdown }
+
+  # Blog Posts Collection (MDX)
+  - name: blog-mdx
+    label: Blog Posts (MDX)
+    label_singular: Blog Post (MDX)
+    folder: blog
+    create: true
+    delete: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Slug, name: slug, widget: string, required: true }
+      - { label: Title, name: title, widget: string, required: true }
+      - { label: Featured Image, name: image, widget: image, required: false }
+      - label: Authors
+        name: authors
+        widget: list
+        required: true
+        default: ['thanhnamnguyen']
+        hint: Select authors from authors.yml
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        hint: Add tags for categorization
+      - { label: Body, name: body, widget: markdown }
+
+  # Documentation - Root Level
+  - name: docs-root
+    label: 'Docs: Root'
+    label_singular: Doc
+    folder: docs
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    filter: { field: sidebar_position, pattern: '.*' }
+    fields:
+      - { label: Title, name: title, widget: string, required: false, hint: 'Optional: Will be extracted from the first heading if not provided' }
+      - { label: Sidebar Position, name: sidebar_position, widget: number, required: false, value_type: int }
+      - { label: Sidebar Label, name: sidebar_label, widget: string, required: false }
+      - { label: Description, name: description, widget: text, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  # Documentation - Tutorial Basics
+  - name: docs-tutorial-basics
+    label: 'Docs: Tutorial Basics'
+    label_singular: Tutorial Basic
+    folder: docs/tutorial-basics
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string, required: false }
+      - { label: Sidebar Position, name: sidebar_position, widget: number, required: false, value_type: int }
+      - { label: Sidebar Label, name: sidebar_label, widget: string, required: false }
+      - { label: Description, name: description, widget: text, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  # Documentation - Tutorial Extras
+  - name: docs-tutorial-extras
+    label: 'Docs: Tutorial Extras'
+    label_singular: Tutorial Extra
+    folder: docs/tutorial-extras
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string, required: false }
+      - { label: Sidebar Position, name: sidebar_position, widget: number, required: false, value_type: int }
+      - { label: Sidebar Label, name: sidebar_label, widget: string, required: false }
+      - { label: Description, name: description, widget: text, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  # Documentation - Petstore (Markdown)
+  - name: docs-petstore
+    label: 'Docs: Petstore API'
+    label_singular: Petstore Doc
+    folder: docs/petstore_versioned
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string, required: false }
+      - { label: Sidebar Position, name: sidebar_position, widget: number, required: false, value_type: int }
+      - { label: Sidebar Label, name: sidebar_label, widget: string, required: false }
+      - { label: Description, name: description, widget: text, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  # Documentation - Petstore (MDX)
+  - name: docs-petstore-mdx
+    label: 'Docs: Petstore API (MDX)'
+    label_singular: Petstore Doc (MDX)
+    folder: docs/petstore_versioned
+    create: true
+    delete: true
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string, required: false }
+      - { label: Sidebar Position, name: sidebar_position, widget: number, required: false, value_type: int }
+      - { label: Sidebar Label, name: sidebar_label, widget: string, required: false }
+      - { label: Description, name: description, widget: text, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  # Authors Configuration
+  - name: authors
+    label: Authors
+    files:
+      - label: Authors
+        name: authors
+        file: blog/authors.yml
+        fields:
+          - label: Endi
+            name: endi
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Page, name: page, widget: boolean, default: true }
+              - { label: Name, name: name, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Image URL, name: image_url, widget: string }
+          - label: Yangshun
+            name: yangshun
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Page, name: page, widget: boolean, default: true }
+              - { label: Name, name: name, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Image URL, name: image_url, widget: string }
+          - label: Slorber
+            name: slorber
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Page, name: page, widget: boolean, default: true }
+              - { label: Name, name: name, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Image URL, name: image_url, widget: string }
+              - label: Socials
+                name: socials
+                widget: object
+                required: false
+                fields:
+                  - { label: X (Twitter), name: x, widget: string, required: false }
+                  - { label: LinkedIn, name: linkedin, widget: string, required: false }
+                  - { label: GitHub, name: github, widget: string, required: false }
+                  - { label: Newsletter, name: newsletter, widget: string, required: false }
+          - label: Gao Wei
+            name: gao-wei
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Page, name: page, widget: boolean, default: true }
+              - { label: Name, name: name, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Image URL, name: image_url, widget: string }
+          - label: Thanh Nam Nguyen
+            name: thanhnamnguyen
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Page, name: page, widget: boolean, default: true }
+              - { label: Name, name: name, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Image URL, name: image_url, widget: string }
+              - label: Socials
+                name: socials
+                widget: object
+                required: false
+                fields:
+                  - { label: GitHub, name: github, widget: string, required: false }
+                  - { label: Newsletter, name: newsletter, widget: string, required: false }
