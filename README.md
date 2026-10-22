@@ -73,6 +73,12 @@ Notice: Use `bun` as the install command for Cloudflare Pages, it's a fast JS ru
 
 Workers & Page: Go to settings project -> Build -> Change build command to `bun install && bun run build`. In Variables and secrets: add `BUN_VERSION` and value `1.3.11`
 
+### Wasmer Edge
+
+[![Deploy to Wasmer](https://img.shields.io/badge/Deploy%20to-Wasmer-171717?logo=wasmer&logoColor=white)](https://wasmer.io/apps/create?github=namnguyenthanhwork%2Fdocusaurus-tailwind-shadcn-template)
+
+The site builds to static files in `build/` (`bun install && bun run build`), which Wasmer Edge can host. The button imports this repository; it does not copy it into your GitHub account. To customize your site, fork the repository first and import your fork. Before deploying, set `url` (and `editUrl`) in `docusaurus.config.ts`, and point `backend.repo` in `static/admin/config.yml` to your fork. Signing in to the `/admin` CMS on hosts other than Netlify needs your own GitHub OAuth proxy (see [Admin CMS](#admin-cms-sveltia-cms)).
+
 ### Netlify and Others
 
 Go to the platform of your choice and follow the instructions to deploy a new site from a Git repository.
